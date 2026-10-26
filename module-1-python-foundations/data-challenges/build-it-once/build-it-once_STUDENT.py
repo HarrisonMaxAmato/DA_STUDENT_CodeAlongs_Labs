@@ -43,17 +43,17 @@ SUBMIT
 ############################################################################
 
 # 1. What does one row represent?
-# Your answer:
+# Your answer: In relation to the rec center data, one row represents a member's activities, including their name, the day of the week they attended, and the number of sessions they participated in. 
 #
 #
 
 # 2. Which fields hold numbers, and which hold text?
-# Your answer:
+# Your answer:The first and second fieldqs hold text (member name and day of the week), while the third field holds numbers (the number of sessions).
 #
 #
 
 # 3. What already looks wrong, missing or inconsistent?
-# Your answer:
+# Your answer: Immediately, the data looks consistent, and while there are no missing values there could be incorrectly inputed data for example a member's name could be misspelled or the number of sessions could be incorrect.
 #
 #
 
@@ -78,6 +78,9 @@ SUBMIT
 # The arithmetic is the same arithmetic a plain loop would do. What changes
 # is that the answer comes back to you instead of going to the screen.
 
+from itertools import count
+
+
 with open("data/rec_center_signups.txt") as f:
     signups = [line for line in f.read().splitlines()
                if line and not line.startswith("#")]
@@ -88,7 +91,9 @@ def total_sessions(records):
     pass
 
 swim_only = []
-# TODO: fill swim_only with just the Swim records
+    class_name = signup.split(",")[1]
+    if class_name == "Swim":
+        swim_only.append(signup)
 
 print("every class:", total_sessions(signups))
 print("swim only:  ", total_sessions(swim_only))
@@ -114,13 +119,16 @@ print("swim only:  ", total_sessions(swim_only))
 # other only puts something on the screen.
 
 def count_long_bookings(records, minimum):
-    # TODO: count the records whose sessions number is `minimum` or more
-    # TODO: return the count
-    pass
+    count = 0
+    for record in records:
+        if int(record.split(",")[2]) >= minimum:
+            count += 1
+    return count
 
 def show_long_bookings(records, minimum):
     # TODO: print a sentence with the same count in it. Only print.
-    pass
+    count = count_long_bookings(records, minimum)
+    print(f"There are {count} long bookings with a minimum of {minimum} sessions.")
 
 print("returned:", count_long_bookings(signups, 4))
 print("returned:", count_long_bookings(signups, 2))
@@ -171,13 +179,15 @@ print("what show_long_bookings handed back:", handed_back)
 # 4. Call it again, unchanged, after sessions_cutoff becomes 2, and print
 #    that result too. The call line is identical both times.
 # 5. Print count_long_bookings(signups, 4) underneath for comparison.
-#
+# 
 # Both versions run clean. Decide which of the two you would trust in a file
 # you did not write, and say what in the call line told you.
 
 sessions_cutoff = 4
 
 def count_reaching_outside(records):
+    count = 0
+    
     # TODO: same count as count_long_bookings, but take NO minimum
     # parameter. Read sessions_cutoff from outside the function instead.
     pass
