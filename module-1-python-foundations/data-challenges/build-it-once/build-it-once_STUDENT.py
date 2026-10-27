@@ -44,7 +44,7 @@ SUBMIT
 
 # 1. What does one row represent?
 # Your answer: In relation to the rec center data, one row represents a member's activities, including their name, the day of the week they attended, and the number of sessions they participated in. 
-#
+# each row is a record of a member's attendance and participation in the rec center's activities.
 #
 
 # 2. Which fields hold numbers, and which hold text?
@@ -81,16 +81,22 @@ SUBMIT
 from itertools import count
 
 
-with open("data/rec_center_signups.txt") as f:
+with open("/Users/Marcy_Student/DA_STUDENT_CodeAlongs_Labs/module-1-python-foundations/data-challenges/build-it-once/rec_center_signups.txt") as f:
     signups = [line for line in f.read().splitlines()
                if line and not line.startswith("#")]
 
 def total_sessions(records):
+    total = 0
+    for record in records:
+        total += int(record.split(",")[2])
+    return total
+    
     # TODO: add up the sessions column across every record in `records`
     # TODO: hand the total back to whoever called this. Do not print it.
     pass
 
 swim_only = []
+for signup in signups:
     class_name = signup.split(",")[1]
     if class_name == "Swim":
         swim_only.append(signup)
@@ -302,7 +308,7 @@ def total_for(records, member):
     # This one should get its work done by calling the other two.
     pass
 
-# TODO: print a line per member
+
 
 # ===== Step 6: Run total_for() on Five Inputs Nobody Asked For, Then Judge Each Answer =====
 # No new functions. Call the ones you already have on inputs nobody asked

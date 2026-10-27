@@ -221,7 +221,7 @@ fixed_seen = 0
 #       The body below is already correct. Only the range changes.
 for i in range(len(shifts)):
     fixed_seen = fixed_seen + 1
-
+    
 print("rows in the file:   ", len(shifts))
 print("buggy loop visited: ", buggy_seen)
 print("fixed loop visited: ", fixed_seen)

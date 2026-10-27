@@ -11,11 +11,15 @@
 from itertools import count
 
 
-with open("Users/Marcy_Student/DA_STUDENT_CodeAlongs_Labs/module-1-python-foundations/data-challenges/data/rec_center_signups.txt") as f:
+with open("/Users/Marcy_Student/DA_STUDENT_CodeAlongs_Labs/module-1-python-foundations/data-challenges/build-it-once/rec_center_signups.txt") as f:
     signups = [line for line in f.read().splitlines()
                if line and not line.startswith("#")]
 
 def total_sessions(records):
+    total = 0
+    for record in records:
+        total += int(record.split(",")[2])
+    return total
     # TODO: add up the sessions column across every record in `records`
     # TODO: hand the total back to whoever called this. Do not print it.
     pass
@@ -66,3 +70,21 @@ print("returned:", count_long_bookings(signups, 2))
 
 handed_back = show_long_bookings(signups, 4)
 print("what show_long_bookings handed back:", handed_back)
+
+
+
+
+
+
+
+
+
+
+
+def count_long_shifts(hours):
+    count = 0
+    for hour in hours:
+        if hour >=4:
+            count += 1
+    return count
+print(count_long_shifts([3,4,6,2,5]))
