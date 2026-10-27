@@ -79,6 +79,7 @@ SUBMIT
 # is that the answer comes back to you instead of going to the screen.
 
 from itertools import count
+from operator import call
 
 
 with open("/Users/Marcy_Student/DA_STUDENT_CodeAlongs_Labs/module-1-python-foundations/data-challenges/build-it-once/rec_center_signups.txt") as f:
@@ -193,17 +194,23 @@ sessions_cutoff = 4
 
 def count_reaching_outside(records):
     count = 0
+    for record in records:
+        if int(record.split(",")[2]) >= sessions_cutoff:
+            count += 1
+    return count
+
     
     # TODO: same count as count_long_bookings, but take NO minimum
     # parameter. Read sessions_cutoff from outside the function instead.
     pass
 
-print("cutoff", sessions_cutoff, "gives", count_reaching_outside(signups))
 
 sessions_cutoff = 2
 
 # TODO: call count_reaching_outside(signups) again, unchanged, and print it
 # TODO: print count_long_bookings(signups, 4) underneath for comparison
+print("cutoff", sessions_cutoff, "gives", count_reaching_outside(signups))
+print("cutoff", sessions_cutoff, "gives", count_long_bookings(signups, 4))
 
 # ===== Step 4: Pass the Last Member In and Out, Then Trigger an UnboundLocalError =====
 # The coordinator wants each sign-up printed next to the one before it. The
@@ -234,7 +241,7 @@ sessions_cutoff = 2
 def log_signup(record, previous_member):
     # TODO: pull the member name out of `record`
     # TODO: print the previous member and this one on one line
-    # TODO: return this member's name
+    # TODO: return this member's name\
     pass
 
 last_member = "nobody yet"
@@ -251,7 +258,7 @@ def log_signup_broken(record):
 
 log_signup_broken(signups[2])
 
-# Your answer:
+# Your answer: I predicted that the print line would not wok because the variable last_seen is being assigned a new value within the function, which makes it a local variable therefore when the function tries to print last_seen before it has been assigned a value it raises an UnboundLocalError.
 #
 #
 
@@ -301,6 +308,7 @@ log_signup_broken(signups[2])
 def sessions_in(record):
     pass
 
+
 def signups_for(records, member):
     pass
 
@@ -334,11 +342,18 @@ def total_for(records, member):
 # asked for, and write a verdict beside each printed result.
 
 # TODO: an empty list
+total_for([], "anyone")
 # TODO: a list holding exactly one record
+total_for([signups[0]], "Nia")
 # TODO: a member name that is not in the file at all
+total_for(signups, "Marco")
 # TODO: a name that differs from a real member's only by capitalization
+total_for(signups, "nia")
 # TODO: then: do the per-member totals add up to the whole-file total?
-
+members = ["Nia", "Omar", "Tess", "Rafi", "Gwen"]
+total_sum = sum(total_for(signups, member) for member in members)
+print("per-member totals add up to:", total_sum)
+print("whole-file total is:", total_sessions(signups))
 # ----- Share Out: Day 3 -----
 # Last 15 minutes, back together as a class. Bring:
 #

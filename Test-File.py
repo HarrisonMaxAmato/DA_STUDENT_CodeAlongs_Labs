@@ -88,3 +88,18 @@ def count_long_shifts(hours):
             count += 1
     return count
 print(count_long_shifts([3,4,6,2,5]))
+
+
+
+
+
+
+def count_reaching_outside(records):
+    count = 0
+    for record in records:
+        if int(record.split(",")[2]) >= sessions_cutoff:
+            count += 1
+    return count
+
+
+print(count_reaching_outside(signups, 4))
