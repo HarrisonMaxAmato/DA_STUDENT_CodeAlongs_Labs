@@ -49,7 +49,8 @@ this repo up (see `README.md`) — `git init`/clone, creating your
 reconstruct it from memory at the end.
 
 ```bash
-
+git clone url
+gigt pull origin main 
 ```
 
 ## 1. First look at the raw file

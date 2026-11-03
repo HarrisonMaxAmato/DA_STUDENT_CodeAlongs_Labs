@@ -3,18 +3,25 @@
 
 # ===== 1. Lists Let You Change Anything, Anytime =====
 # Build a list of order IDs, add one, rename the first, and print the results.
+from asyncio import log
+
+
 print('----- 1. Lists Let You Change Anything, Anytime -----')
 # TODO: create a list called pending_orders
 # TODO: put "ORD-1001", "ORD-1002" and "ORD-1003" in it
-
+pending_orders = ["ORD-1001", "ORD-1002", "ORD-1003"]
 
 # TODO: append "ORD-1004" to pending_orders
+pending_orders.append("ORD-1004")
 
 
 # TODO: change pending_orders[0] to "ORD-1001-R" (lists are mutable)
-
+pending_orders[0] = "ORD-1001-R"
 
 # TODO: print pending_orders, its length, and its last item (use [-1])
+print("Here is the list of pending orders", pending_orders)
+print("Length of pending orders:", len(pending_orders))
+print("Last pending order:", pending_orders[-1])
 
 
 # ===== 2. Once Locked In, a Tuple Can't Be Changed =====
@@ -22,17 +29,19 @@ print('----- 1. Lists Let You Change Anything, Anytime -----')
 # TODO: run it, read the TypeError, then comment out the raising line
 print("----- 2. Once Locked In, a Tuple Can't Be Changed -----")
 # TODO: create a tuple called log_entry: timestamp, level, status code
+log_entry = ("2026-10-28T10:32:00.000Z", "ERROR", 500)
 # TODO: use any timestamp string, "ERROR" and 500
 
 
 # TODO: unpack log_entry into timestamp, level, status
-
+timestamp, level, status = log_entry
 
 # TODO: print an f-string showing level, timestamp, and status
+print(f"Level: {level}, Timestamp: {timestamp}, Status: {status}")
 
 
 # TODO: try log_entry[0] = a new timestamp (this SHOULD raise an error)
-
+log_entry[0] = "2024-10-15T10:32:00.000Z"
 
 # ===== 3. Only Hashable Values Can Be Dict Keys =====
 # Add and update products in a dict, then print each SKU and its stock.
@@ -50,15 +59,17 @@ for sku, count in product_stock.____():
 # Track IDs in a set, add a duplicate, and check if an ID is in the set.
 print('----- 4. Sets Make Membership Checks Instant -----')
 # TODO: create a set called seen_ids with 101, 102, and 103
-
+seen_ids = {101, 102, 103}
 
 # TODO: add 102 again - what happens? (sets have no duplicates)
-
+seen_ids.add(102)
 
 # TODO: add a new id, 104
-
+seen_ids.add(104)
 
 # TODO: print seen_ids, then check if 103 is in seen_ids
+print("Seen IDs:", seen_ids)
+print("Is 103 in seen_ids?", 103 in seen_ids)
 
 
 # ===== 5. The Cost of Checking a List Adds Up =====

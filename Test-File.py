@@ -102,4 +102,27 @@ def count_reaching_outside(records):
     return count
 
 
-print(count_reaching_outside(signups, 4))
+def sessions_in(record):
+    pass
+
+
+def signups_for(records, member):
+    pass
+
+def total_for(records, member):
+    # This one should get its work done by calling the other two.
+    pass
+
+# TODO: an empty list
+total_for([], "anyone")
+# TODO: a list holding exactly one record
+total_for([signups[0]], "Nia")
+# TODO: a member name that is not in the file at all
+total_for(signups, "Marco")
+# TODO: a name that differs from a real member's only by capitalization
+total_for(signups, "nia")
+# TODO: then: do the per-member totals add up to the whole-file total?
+members = ["Nia", "Omar", "Tess", "Rafi", "Gwen"]
+total_sum = sum(total_for(signups, member) for member in members)
+print("per-member totals add up to:", total_sum)
+print("whole-file total is:", total_sessions(signups))
