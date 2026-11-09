@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Validate, Catch, Keep Going: see DataChallengeOverview&Steps.md."""
 
-DATA_FILE = "service_requests.csv"  # edit the filepath with the data
+DATA_FILE = "/Users/Marcy_Student/DA_STUDENT_CodeAlongs_Labs/module-1-python-foundations/data-challenges/validate-catch-keep-going/service_requests.csv"  # edit the filepath with the data
 
 with open(DATA_FILE) as f:
     lines = f.read().splitlines()
@@ -18,9 +18,15 @@ rows = [line for line in lines[1:] if line]
 
 
 def validate_request(row):
+    fields = row.split(",")
     # TODO: assign `fields` to `row` split on commas
     if len(fields) != EXPECTED_FIELDS:
         return False, "wrong field count: " + str(len(fields))
+    if borough == "":
+        return False, "borough is empty"
+    if status not in ALLOWED_STATUS:
+        return False, "status not allowed: " + status
+    return True, "ok"
     # TODO: unpack `fields` into the five names in the CSV header
     # TODO: if `borough` is empty, return False and "borough is empty"
     # TODO: if `status` is not in ALLOWED_STATUS, return False and a reason
@@ -28,15 +34,22 @@ def validate_request(row):
     # TODO: return True and "ok"
     pass
 
-
+for row in rows:
+    ok, reason = validate_request(row)
+    if not ok:
+        print(row.split(",")[0], "REJECTED -", reason)
+    else:
+        print(row.split(",")[0], "ACCEPTED -", reason)
+    
 print(validate_request("SR-1001,Noise - Residential,Brooklyn,3,Closed"))
 print(validate_request("SR-1004,Rodent,,6,Closed"))
 print(validate_request("SR-1009,Water System,Queens,4,Escalated"))
 
 # Step 1, answer 1:
-#
+# what is in the file is a single string, and the function is expecting a row of data that has been split into fields. The function is trying to unpack the string into five variables, but since it is not split, it raises a ValueError because there are not enough values to unpack.
 # Step 1, answer 2:
-#
+#The caller takes two returned values apart in one line through the comma. The function is really handing back a single tuple that contains two values, which is the boolean and the string.
+
 
 
 # Step 2: Run All 15 Rows Through the Validator and Report Each Rejection
