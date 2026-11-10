@@ -29,7 +29,11 @@ print('----- 1. Step 1: __init__ and Attributes -----')
 # TODO: define class BoardGame with __init__(self, title,
 # players_available, category) that stores all three as
 # self.title, self.players_available, self.category
-
+class BoardGame:
+    def __init__(self, title, players_available, category):
+        self.title = title
+        self.players_available = players_available
+        self.category = category
 
 # TODO: create connect4 = BoardGame("Connect Four", 4, "Strategy")
 # TODO: print connect4.title, then print connect4.players_available
